@@ -1,5 +1,5 @@
 name: Build and Push Docker Image
-run-name: {% raw %}${{ github.actor }}{% endraw %} ran Build and Push
+run-name: ${{ github.actor }} ran Build and Push
 
 on:
   push:
@@ -32,8 +32,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: {% raw %}${{ github.repository_owner }}{% endraw %}
-          password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Build and push
         uses: docker/build-push-action@v5
@@ -41,4 +41,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: {{org.docker_host}}/{{org.docker_org}}/{{info.slug}}_runbook_api:latest
+          tags: ghcr.io/mentor-forge/mentorhub_runbook_api:latest
